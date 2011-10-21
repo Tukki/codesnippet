@@ -1,0 +1,13 @@
+{
+   "content_scripts": [ {
+      "exclude_globs": [  ],
+      "include_globs": [ "http://*weibo.com/*" ],
+      "js": ["jquerymin.js", "weibo_read_it_later.user.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_idle"
+	} ],
+   "converted_from_user_script": true,
+   "description": "add Read It later links to weibo webpage",
+   "name": "Weibo Read It Later",
+   "version": "0.1"
+}
