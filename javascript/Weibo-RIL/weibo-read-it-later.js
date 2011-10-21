@@ -1,4 +1,5 @@
 //Module: 'jquery' must be loaded before DOM onLoad!
+//不行
 function initLoader(){
 	var script = document.createElement('script');
 	script.src = "https://www.google.com/jsapi?key=ABQIAAAA40XTsdIm0CP0fAFU8UA8qhSOvpf6vKFU2JjhZoX3Tf1y3lhlTBSwvcImxTMuOi86QzK9nT_RWElkAg&callback=initJquery";
@@ -13,9 +14,10 @@ function initJquery(){
 	//google.setOnLoadCallback(RIL);
 	
 }
-
+//============================================
+//
 //纯旧版能用. 但转发的存在则引用错误, 无法自动检测新load入的数据
-function RIL(){
+function RIL_for_old(){
 	var ril_url = "https://readitlaterlist.com/save?";
 	var wblist = $('.MIB_linedot_l');
 	console.log(mblist);
@@ -50,7 +52,11 @@ function RIL(){
 	})
 };
 
+
+
+
 //加载jQuery后回调
+//loadJQuery(RIL);
 function loadJQuery(cbFunc){
 	if(!window.jQuery){
 		var script = document.createElement('script');
@@ -63,7 +69,19 @@ function loadJQuery(cbFunc){
 	}
 };
 
-//loadJQuery(RIL);
 
 
+var hassetup = false;
+function changed(){
+    var $homeFeed = $('#pl_content_homeFeed');
+    $homeFeed.bind('DOMNodeInserted', function(){
+        if (!hassetup) {
+            window.setTimeout(function(){
+                RIL();
+                hassetup = false;
+            }, 2000);
+            hassetup = true;
+         }
+         })
+    };
 
