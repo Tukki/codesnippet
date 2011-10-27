@@ -85,3 +85,32 @@ function changed(){
          })
     };
 
+
+// change from src http://readitlaterlist.com/button/multi_v1.js
+// Want to add a Read It Later button to your own site?
+// Check out: http://readitlaterlist.com/api/buttons
+
+var RILBUTTONS = 0;
+function RIL_button(url, title, img, width, height)
+{
+
+var custom = false;
+if (!width || !height)
+{
+	width = 85;
+	height = 16;
+}
+else
+	custom = true;	
+
+RILBUTTONS++;
+var iframe = '<iframe class="readitlater_button" id="readitlater_button'+RILBUTTONS+'" allowtransparency="true" frameborder="0" scrolling="no" width="'+width+'" height="'+height+'" style="z-index: 2000; overflow: hidden;'+(custom?'':'position:relative;top:3px')+'"'+
+'src="http://readitlaterlist.com/button?url='+encodeURIComponent(url)+
+'&title='+encodeURIComponent(title.replace(/^\s\s*/, '').replace(/\s\s*$/, ''))+
+'&via='+encodeURIComponent(document.location.host)+
+(img?'&img='+encodeURIComponent(img):'')+
+'"></iframe>';
+
+return iframe
+}
+
