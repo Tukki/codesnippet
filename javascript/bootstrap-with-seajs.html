@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons    
+    <link rel="shortcut icon" href="bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    -->
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <a class="btn" href="#myModal" id="lanchModal">Launch Modal</a>
+      <div class="modal hide" id="myModal">
+          <div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3>Modal header</h3>
+          </div>
+          <div class="modal-body">
+              <p>One fine body…</p>
+          </div>
+          <div class="modal-footer">
+              <a href="#" class="btn" data-dismiss="modal">Close</a>
+              <a href="#" class="btn btn-primary">Save changes</a>
+          </div>
+      </div>
+
+      <footer>
+        <p>&copy; Company 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   
+    <script src="bootstrap/js/require.js"></script>
+    <script type="text/javascript">
+        define('foo', ['jquery', 'bootstrap-modal'], function(){
+            //    require('jquery');
+            //    require('bootstrap-modal');
+
+                var init = function(){
+                    console.log('fire');
+                    $("#lanchModal").click(function(){
+                        $("#myModal").modal('toggle');
+                        })
+                };
+                return {'init': init};
+                });
+        require.config({
+                baseUrl: './bootstrap/js',
+                });
+        require(['foo'], function(foo){
+                console.log('start this first');
+                foo.init();
+                }
+               )
+    </script>
+
+    <!--     
+    <script src="bootstrap/js/sea-debug.js"></script>
+    <script type="text/javascript">
+        //In SeaJS, any JavaScript file should be written in module format, and files and modules are in one-to-one correspondence.
+        // I don't know how to get it fire.
+        define('foo', ['jquery', 'bootstrap-modal'], function(){
+                return {'init': function(){
+                    console.log('fire it...');
+                    $("#lanchModal").click(function(){
+                        $("#myModal").modal('toggle');
+                    })
+                }}
+        });
+
+        seajs.config({
+                base: './bootstrap/js',
+                })
+    seajs.use(['foo'], function(foo){
+                    console.log('start this first');
+                    foo.init();
+                })
+//        seajs.use(['jquery', 'bootstrap-modal'], function(){
+//                console.log('fire it...');
+//                $("#lanchModal").click(function(){
+//                    $("#myModal").modal('toggle');
+//                    })
+//        })
+    </script>
+    -->
+    <!-- 
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+    -->
+  </body>
+</html>
