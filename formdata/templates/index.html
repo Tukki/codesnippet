@@ -1,0 +1,39 @@
+<form enctype="multipart/form-data">
+  <input type=file name=document>
+  <input type=button value=upload>
+</form>
+<progress value=0></progress>
+<div id="result"></div>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+  function progressHandling(e){
+    if (e.lengthComputeable){
+      $("progress").attr({value: e.loaded, max:e.total});
+    }
+  }
+
+  $(function(){
+    $(':button').click(function(e){
+      var formData = new FormData($('form')[0]);
+      $.ajax({
+        url: '{{ url_for("index") }}',
+        type: 'POST',
+        xhr: function(){
+          var myXhr = $.ajaxSettings.xhr();
+          if(myXhr.upload){
+            myXhr.upload.addEventListener('progress', progressHandling, false);
+          }
+          return myXhr;
+        },
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+          $("#result").html(JSON.stringify(data));
+        }
+      });
+    });
+  })
+</script>
+
